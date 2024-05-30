@@ -26,13 +26,25 @@ public class Character{
    shape(leftLeg);
    shape(rightArm);
    shape(leftArm);
-   swim();
-   shape(rightArm);
+   drawChar();
+   //swim();
+   //shape(rightArm);
 
 
   }
+  
   void swim(){
-    rightArm.rotate(30);
+    //rightArm.rotate(PI);
+        //rightArm= createShape(ELLIPSE, 280, 320, 12, 60);
+
+   //shape(rightArm);
+
+  }
+  void drawChar(){
+    translate(width/2, height/2);
+    rotate(radians(90));
+    //PShape test =createShape(ELLIPSE, 200, 200, 35, 20);
+    shape(rightArm);
   }
   void moveRight(){
   }
