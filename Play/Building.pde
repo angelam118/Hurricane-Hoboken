@@ -10,6 +10,9 @@ void display(){
  shape(rec);
 }
 void addX(int toAdd){
-  x=x+toAdd;
+  x=x-toAdd;
+}
+void move(){
+  addX(10);
 }
 }
