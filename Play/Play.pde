@@ -26,7 +26,7 @@ void draw(){
   //building(h, start);
   //start+=20;
   //if(key){
-    pete.drawChar();
+    //pete.drawChar();
   for (Building i :builds){
     i.display();
   }
@@ -37,7 +37,7 @@ void draw(){
 
     //noLoop();
     //fill(0);
-    pete.drawChar();
+    //pete.drawChar();
     fill(#C2AFD8);
     //pete.swim();
     //fill(#EAE1C0);
