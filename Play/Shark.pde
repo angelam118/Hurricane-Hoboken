@@ -2,22 +2,21 @@ public class Shark{
   boolean inside;
   int x, y;
   
-  Shark(){
+  Shark(int startX, int startY){
     inside=false;
-    x=40;
-    y=460;
-    drawShark();//shld go somewhere else
-  }
-  void drawShark(){
-    translate(x, y);
-    rotate(PI/4);
+    x=startX;
+    y=startY;
     noStroke();
-    ellipse(0, 0, 40, 70);
-    rotate(-PI/4);//rotate back
-    translate(-x, -y);
+    ellipse(x, y, 40, 70);
   }
   void swim(){
-    //every
+    int newX=x;
+    int newY=y;
+    y=newY;
+    x=newX;
+    fill(#969FA5);
   }
-  
+  boolean checkInside(){
+    return inside;
+  }
 }
