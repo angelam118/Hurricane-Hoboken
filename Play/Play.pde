@@ -1,13 +1,20 @@
 import java.util.*;
 int start=0;
 boolean key;
+
+SupplyList supplies=new SupplyList();
+
 int openness=0;
 boolean openMore=false;
 Character pete;
 boolean swim=false;
 boolean won = false;
+boolean inSand=false;
+boolean first =true;
+int curBuild=0;
 Shark shark;
 Hurricane hur;
+Sand sand = new Sand();
 ArrayList<Building> builds;
 Building last ;
 void setup(){
@@ -18,7 +25,7 @@ void setup(){
     int h = (int)(Math.random()*-170)-70;
     Building b = new Building(i*20-250, h);
     builds.add(b);
-    if(i==20){//select last building so you can win
+    if(i==200){//select last building so you can win
       last=builds.get(i);
     }
   }
@@ -27,12 +34,14 @@ void setup(){
   shark = new Shark(0, 0);
 }
 void draw(){
+  //
   translate(width/2, height/2);
-      System.out.println(last.getX());
-
-  
+  //System.out.println(width);
+  //display for inside of shark
   if(shark.checkInside()){
-    background(#8B1414);
+    openness=supplies.openMouth();
+   background(#8B1414);
+   stroke(1);
   fill(#4F93BF);
   rect(-250, -openness, 500, 20+openness);//sky behind teeth
   fill(#F5F0F0);
@@ -42,9 +51,19 @@ void draw(){
   for(int i=-265;i<250;i+=30){
     triangle(i, 20,  i+10, 0, i+30, 20 );
   }
+  text("You were eaten by a shark! Stack objects to escape", -100, -100);
   if(openMore){
     openness++;
   }
+  supplies.drawList();
+  if(openness>=100){
+    shark.escape();
+    first=false;
+  }
+}
+  //display for inside sand bank
+  else if(inSand){
+    
   }else{
   
   background(#4F93BF);
@@ -57,22 +76,46 @@ void draw(){
   }
   if(swim){
     pete.swim();
+    first=false;
     hur.stay();
-  }else{
+    curBuild++;
+    sand.setSandX(sand.getSandX()-1);
+
+  }else {
     pete.stopSwim();
+    if(!won){
     hur.approach();
+    }
+     if(first){
+       text("swim to school before the hurricane comes!\n press right arrow key to start", -100, 70);
+     }
   }
  // shark= new Shark(40, 460);
    // shark.swim(); //<>//
    // fill(#C2AFD8);
   }
+  
+  //if at last buidding
   if(last.getX()<=0){
     PImage img = loadImage("stuy.png");
     image(img, 70, -130, 200, 200);
+    won=true;
     text("WIN", 0, 0);
     System.out.println("WIN");
     hur.stay();
   }
+  //System.out.println(curBuild);
+ if (curBuild>=20){
+   //fill(#C2B280);
+    //System.out.println(sandX);
+    //rect(200, -50, 200, 300);
+   sand.drawSandBank();
+   System.out.println("sand"+sand.getSandX());
+   if (sand.getSandX()<=0){
+     inSand=true;
+   }
+ }
+
 }
 void building(int h, int start){
   fill(#969FA5);
@@ -98,9 +141,18 @@ void keyReleased(){
     }
  }
  void mousePressed(){
-  openMore=true;
+  if (shark.checkInside()){
+    supplies.getClicked(mouseX-width/2, mouseY-height/2);
+    System.out.println(mouseX-width/2);
+    System.out.println(mouseY-height/2);
+  }
 }
 void mouseReleased(){
-  openMore=false;
+  if(shark.checkInside()){
+    supplies.move(mouseX-width/2, mouseY-height/2);
+    System.out.println(mouseX-width/2);
+    System.out.println(mouseY-height/2);
+    openMore=false;
+  }
 }
   

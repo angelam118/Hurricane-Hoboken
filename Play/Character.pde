@@ -5,7 +5,7 @@ public class Character{
   int translateLegX=-40;
   int translateLegY=-10;
   float legAngle=0;
-  int armX=7;
+  int armX=15;
   int armY=0;
   float armAngle=0;
   float armSpeed=.02;
