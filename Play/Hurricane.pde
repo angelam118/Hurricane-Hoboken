@@ -12,8 +12,12 @@ public class Hurricane{
        fill(#F53614);
        textSize(100);
        text("YOLO", -80, 0);
+       pete.alive=false;
+        textSize(20);
+       text("you have been gotten by the hurricane", -100, 100);
+
      }
-     delay(200);
+     delay(10);
 }
   void stay(){//keep still while swimming
      fill(0, 200);

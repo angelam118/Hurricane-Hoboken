@@ -30,7 +30,7 @@ void setup(){
     int h = (int)(Math.random()*-170)-70;
     Building b = new Building(i*20-250, h);
     builds.add(b);
-    if(i==400){//select last building so you can win
+    if(i==200){//select last building so you can win
       last=builds.get(i);
     }
       pete=new Character("pete");
@@ -85,10 +85,9 @@ void draw(){
     }else{
       pete.stopSwim();
     }
-    //pete.display();
+    pete.display();
     //popMatrix();
-    fill(0);
-    text("you are stuck in a sand bank, dig yourself to the other side", -100, 200);
+    text("you are stuck in a sand bank, dig yourself to the other side", 0, 0);
     //System.out.println(pete.x);
     //inSand=false;
     if(pete.x>=200){
@@ -107,8 +106,6 @@ void draw(){
     //translate(-250, -250);
     if (water.active){
     water.update();
-        fill(0);
-    text("you are stuck under a boat! evade the propellers to get to the other side", -130, 200);
     if (swim){
       pete.swim();
     }
@@ -125,7 +122,7 @@ void draw(){
     }
   }
   else{
-    //println("OUT SAND");
+    println("OUT SAND");
   background(#4F93BF);
   fill(#A0D0F0);
   noStroke();
@@ -148,12 +145,12 @@ void draw(){
     if(!won){
     hur.approach();
     }
-     if(first && pete.alive){
+     if(first){
        text("swim to school before the hurricane comes!\n press right arrow key to start", -100, 70);
      }
   }
  // shark= new Shark(40, 460);
-   // shark.swim(); //<>//
+   // shark.swim();
    // fill(#C2AFD8);
   }
   
@@ -174,7 +171,7 @@ void draw(){
     }
     if(boat.getX()==0){
       insideBoat=true;
-      //text("you are trapped under a boat! Careful not to get hit by propellers", -30, 0);
+      text("you are trapped under a boat! Careful not to get hit by propellers", 0, 0);
       boat.addX(boat.getX()-1);
     }
   }
@@ -196,7 +193,7 @@ void draw(){
    sand.drawSandBank();
    //System.out.println("sand"+sand.getSandX());
    if (sand.getSandX()==0){
-     inSand=true;
+     inSand=true;//fix later
      sand.setSandX(sand.getSandX()-30);
      //sand.update();
    }}
